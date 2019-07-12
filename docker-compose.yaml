@@ -2,7 +2,6 @@
 version: '3.7'
 services:
     nginx:
-      container_name: nginx
       image: nginx:latest
       volumes:
       - type: bind
@@ -16,14 +15,14 @@ services:
         - client
         - server
     server:
-      image: localhost:5000/server
+      image: 127.0.0.1:5000/server
       build:
         context: ./server
         dockerfile: Dockerfile
       ports:
       - "8081:8080"
     client:
-      image: localhost:5000/client
+      image: 127.0.0.1:5000/client
       build:
         context: ./client
         dockerfile: Dockerfile
