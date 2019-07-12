@@ -6,5 +6,9 @@ pipeline{
                                sh "docker-compose up --build -d"
                         }
                 }
+		stage('---push---')
+			steps{
+				sh "docker-compose push"
+			}
 	}
 }
