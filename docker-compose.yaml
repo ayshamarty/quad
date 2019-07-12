@@ -43,6 +43,8 @@ services:
       - ./data:/data
       command:
       - "mongoimport --host mongo --port 27017 --db test --mode upsert --type json --file /data/account.json --jsonArray"
+      restart:
+      - on-failure
 
   
 ...
