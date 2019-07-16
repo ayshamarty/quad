@@ -1,18 +1,15 @@
 pipeline{
 	agent any
         stages{
-		stage('---clean---'){
+		stage('---build---'){
                         steps{
-                               sh "kubectl delete -f ./nginx"
+                               sh "docker-compose up --build -d"
+                               sh "docker stack deploy --compose-file docker-compose.yaml stackdemo"
                         }
                 }
-		stage('---apply---'){
+		stage('---push---')
 			steps{
-				sh "kubectl apply -f ./mongo/data"
-				sh "kubectl apply -f ./client"
-				sh "kubectl apply -f ./server"
-				sh "kubectl apply -f ./nginx"
+				sh "docker-compose push"
 			}
-		}
 	}
 }
