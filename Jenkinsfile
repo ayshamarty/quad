@@ -7,9 +7,10 @@ pipeline{
                                sh "docker stack deploy --compose-file docker-compose.yaml stackdemo"
                         }
                 }
-		stage('---push---')
+		stage('---push---'){
 			steps{
 				sh "docker-compose push"
 			}
+		}	
 	}
 }
